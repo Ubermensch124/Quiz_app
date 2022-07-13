@@ -40,6 +40,7 @@ body {
   margin-bottom: 8rem;
   width: 220px;
   height: 200px;
+  position: fixed;
 }
 
 .all {
@@ -55,6 +56,16 @@ body {
 
 .count_text {
   margin-top: 10px;
+}
+
+.current_count {
+  background-color: #fff;
+  border-radius: 20%;
+  border-style: solid;
+  border-color: #8e44ad;
+  margin-bottom: 34rem;
+  width: 240px;
+  height: 100px;
 }
 
 h2 {

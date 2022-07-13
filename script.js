@@ -37,6 +37,9 @@ const d_text = document.getElementById("d_text");
 const total_count = document.getElementById("total_count");
 const correct_count = document.getElementById("correct_count");
 
+const current_number = document.getElementById("current_number");
+current_number.innerText = "1/" + String(data.length);
+
 total_count.innerText = data.length;
 
 let question_number = 0;
@@ -64,6 +67,10 @@ btn.addEventListener("click", () => {
     ) {
       correct_count.innerText = Number(correct_count.textContent) + 1;
     }
+  }
+  if (question_number + 2 <= data.length) {
+    current_number.innerText =
+      String(question_number + 2) + "/" + String(data.length);
   }
   question_number++;
   loadQuiz();
