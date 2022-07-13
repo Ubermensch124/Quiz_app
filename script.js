@@ -5,7 +5,7 @@ const data = [
     b: "15",
     c: "20",
     d: "25",
-    correct: "c",
+    correct_answer: "c",
   },
   {
     question: "How many times i start this case?",
@@ -13,7 +13,7 @@ const data = [
     b: "3",
     c: "4",
     d: "5",
-    correct: "b",
+    correct_answer: "b",
   },
   {
     question: "How?",
@@ -21,11 +21,11 @@ const data = [
     b: "No",
     c: "Maybe",
     d: "Of course no",
-    correct: "a",
+    correct_answer: "a",
   },
 ];
 
-const question_el = document.getElementById("Question");
+const question_text = document.getElementById("Question");
 
 const btn = document.getElementById("Submit");
 
@@ -34,21 +34,37 @@ const b_text = document.getElementById("b_text");
 const c_text = document.getElementById("c_text");
 const d_text = document.getElementById("d_text");
 
-let current_question = 0;
+const total_count = document.getElementById("total_count");
+const correct_count = document.getElementById("correct_count");
+
+total_count.innerText = data.length;
+
+let question_number = 0;
 
 loadQuiz();
 
 function loadQuiz() {
-  const current = data[current_question];
+  const current_question_data = data[question_number];
 
-  question_el.innerText = current.question;
-  a_text.innerText = current.a;
-  b_text.innerText = current.b;
-  c_text.innerText = current.c;
-  d_text.innerText = current.d;
+  question_text.innerText = current_question_data.question;
+  a_text.innerText = current_question_data.a;
+  b_text.innerText = current_question_data.b;
+  c_text.innerText = current_question_data.c;
+  d_text.innerText = current_question_data.d;
 }
 
 btn.addEventListener("click", () => {
-  current_question++;
+  const current_question_data = data[question_number];
+
+  let radio_inputs = document.getElementsByName("answer");
+  for (let i = 0; i < radio_inputs.length; i++) {
+    if (
+      radio_inputs[i].checked &&
+      radio_inputs[i].id == current_question_data.correct_answer
+    ) {
+      correct_count.innerText = Number(correct_count.textContent) + 1;
+    }
+  }
+  question_number++;
   loadQuiz();
 });
